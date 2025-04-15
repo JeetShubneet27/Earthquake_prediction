@@ -38,10 +38,13 @@ def init_geocoder():
 geocode = init_geocoder()
 
 # Load model and related files
+import pickle
+import gzip
+
 @st.cache_resource
 def load_resources():
     return {
-        'best_model': pickle.load(open('best_model.pkl', 'rb')),
+        'best_model': pickle.load(gzip.open('best_model.pkl.gz', 'rb')),
         'scaler': pickle.load(open('scaler.pkl', 'rb')),
         'features': pickle.load(open('feature_list.pkl', 'rb'))
     }
